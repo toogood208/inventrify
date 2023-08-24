@@ -25,7 +25,6 @@ class StartupView extends StackedView<StartupViewModel> {
             width: double.infinity,
             height: 100,
             decoration: const BoxDecoration(
-                // color: Colors.black12,
                 image: DecorationImage(
                     image: AssetImage(
                       "assets/images/design.png",
@@ -40,11 +39,12 @@ class StartupView extends StackedView<StartupViewModel> {
             width: double.infinity,
             height: 100,
             decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(
-                      "assets/images/down.png",
-                    ),
-                    fit: BoxFit.cover)),
+              image: DecorationImage(
+                  image: AssetImage(
+                    "assets/images/down.png",
+                  ),
+                  fit: BoxFit.cover),
+            ),
           ),
         ],
       ),
