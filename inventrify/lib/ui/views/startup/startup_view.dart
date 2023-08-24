@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:inventrify/ui/common/app_colors.dart';
 import 'package:stacked/stacked.dart';
-import 'package:inventrify/ui/common/ui_helpers.dart';
 
 import 'startup_viewmodel.dart';
 
@@ -14,32 +15,38 @@ class StartupView extends StackedView<StartupViewModel> {
     StartupViewModel viewModel,
     Widget? child,
   ) {
-    return const Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(
-              'STACKED',
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900),
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('Loading ...', style: TextStyle(fontSize: 16)),
-                horizontalSpaceSmall,
-                SizedBox(
-                  width: 16,
-                  height: 16,
-                  child: CircularProgressIndicator(
-                    color: Colors.black,
-                    strokeWidth: 6,
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
+    return Scaffold(
+      backgroundColor: kcBackgroundColor,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            width: double.infinity,
+            height: 100,
+            decoration: const BoxDecoration(
+                // color: Colors.black12,
+                image: DecorationImage(
+                    image: AssetImage(
+                      "assets/images/design.png",
+                    ),
+                    fit: BoxFit.fill)),
+          ),
+          Image.asset(
+            "assets/icons/logo.png",
+            fit: BoxFit.contain,
+          ),
+          Container(
+            width: double.infinity,
+            height: 100,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                      "assets/images/down.png",
+                    ),
+                    fit: BoxFit.cover)),
+          ),
+        ],
       ),
     );
   }
@@ -51,6 +58,19 @@ class StartupView extends StackedView<StartupViewModel> {
       StartupViewModel();
 
   @override
-  void onViewModelReady(StartupViewModel viewModel) => SchedulerBinding.instance
-      .addPostFrameCallback((timeStamp) => viewModel.runStartupLogic());
+  void onViewModelReady(StartupViewModel viewModel) =>
+      SchedulerBinding.instance.addPostFrameCallback(
+        (timeStamp) {
+          SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+              overlays: [SystemUiOverlay.top]);
+
+          viewModel.runStartupLogic();
+        },
+      );
+  @override
+  void onDispose(StartupViewModel viewModel) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+        overlays: SystemUiOverlay.values);
+    super.onDispose(viewModel);
+  }
 }
