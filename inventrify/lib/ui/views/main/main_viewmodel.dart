@@ -5,7 +5,7 @@ import 'package:stacked/stacked.dart';
 class MainViewModel extends BaseViewModel {
   final selectedItemColor =  Colors.white;
   final unselectedItemColor =  const Color(0xFF4c5775);
-  final selectedBgColor = Colors.indigo;
+  final selectedBgColor =  const Color(0xFF4c6ed7);
   final unselectedBgColor = Colors.transparent;
   int selectedIndex = 0;
   static const TextStyle optionStyle =
