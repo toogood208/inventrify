@@ -131,4 +131,3 @@ class LoginView extends StackedView<LoginViewModel> with $LoginView {
     disposeForm();
   }
 }
-

@@ -18,7 +18,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-       margin: EdgeInsets.all(16.r),
+        margin: EdgeInsets.all(16.r),
         padding: EdgeInsets.all(16.r),
         width: double.infinity,
         height: 60.h,
@@ -26,29 +26,33 @@ class CustomButton extends StatelessWidget {
             color: const Color(0xFF4664af),
             borderRadius: BorderRadius.circular(50.r)),
         child: Center(
-          child: isBusy? const CircularProgressIndicator( color: Colors.white,): Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (isPrefix)
-                  Container(
-                    decoration: const BoxDecoration(
-                        color: Colors.white, shape: BoxShape.circle),
-                    child: const Icon(
-                      Icons.close,
-                      color: Colors.black,
-                    ),
-                  ),
-                Text(
-                  title,
-                  style: TextStyle(color: Colors.white, fontSize: 20.sp),
-                ),
-                if (isSuffix)
-                   const Icon(
+          child: isBusy
+              ? const CircularProgressIndicator(
+                  color: Colors.white,
+                )
+              : Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                      if (isPrefix)
+                        Container(
+                          decoration: const BoxDecoration(
+                              color: Colors.white, shape: BoxShape.circle),
+                          child: const Icon(
+                            Icons.close,
+                            color: Colors.black,
+                          ),
+                        ),
+                      Text(
+                        title,
+                        style: TextStyle(color: Colors.white, fontSize: 20.sp),
+                      ),
+                      if (isSuffix)
+                        const Icon(
                           Icons.arrow_forward,
                           color: Colors.white,
                         )
-              ]),
+                    ]),
         ),
       ),
     );

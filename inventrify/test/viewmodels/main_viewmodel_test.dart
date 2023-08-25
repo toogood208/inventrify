@@ -4,12 +4,8 @@ import 'package:inventrify/app/app.locator.dart';
 import '../helpers/test_helpers.dart';
 
 void main() {
-
-  group('HomeViewmodelTest -', () {
+  group('MainViewModel Tests -', () {
     setUp(() => registerServices());
     tearDown(() => locator.reset());
-
-    
-   
   });
 }
